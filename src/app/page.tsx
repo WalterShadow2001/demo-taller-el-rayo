@@ -82,8 +82,8 @@ export default async function HomePage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="relative overflow-hidden border-b border-border">
-          <div className="bg-industrial-radial absolute inset-0" aria-hidden="true" />
-          <div className="bg-industrial-grid absolute inset-0 opacity-30" aria-hidden="true" />
+          <div className="bg-industrial-radial absolute inset-0 -z-10" aria-hidden="true" />
+          <div className="bg-industrial-grid absolute inset-0 -z-10 opacity-30" aria-hidden="true" />
           <div className="container relative mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
             <div className="flex flex-col gap-6">
               <Badge className="w-fit gap-1.5 border-primary/30 bg-primary/10 text-primary">
@@ -328,7 +328,7 @@ export default async function HomePage() {
 
         {/* CTA */}
         <section className="relative overflow-hidden">
-          <div className="bg-industrial-radial absolute inset-0" aria-hidden="true" />
+          <div className="bg-industrial-radial absolute inset-0 -z-10" aria-hidden="true" />
           <div className="container relative mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-16 text-center">
             <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-foreground sm:text-4xl">
               Agenda tu cita en 4 pasos

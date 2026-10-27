@@ -74,7 +74,7 @@ export default async function ConfirmacionPage({
       <SiteHeader />
       <main className="flex-1">
         <section className="border-b border-border bg-card/50">
-          <div className="bg-industrial-radial absolute inset-0" aria-hidden="true" />
+          <div className="bg-industrial-radial absolute inset-0 -z-10" aria-hidden="true" />
           <div className="container relative mx-auto max-w-3xl px-4 py-10 md:py-14">
             <Button asChild variant="ghost" size="sm" className="mb-4 gap-1.5">
               <Link href="/citas">

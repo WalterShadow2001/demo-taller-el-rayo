@@ -26,7 +26,7 @@ export default async function ServiciosPage() {
       <main className="flex-1">
         {/* Header band */}
         <section className="border-b border-border bg-card/50">
-          <div className="bg-industrial-grid absolute inset-0 opacity-20" aria-hidden="true" />
+          <div className="bg-industrial-grid absolute inset-0 -z-10 opacity-20" aria-hidden="true" />
           <div className="container relative mx-auto max-w-6xl px-4 py-12 md:py-16">
             <Badge variant="outline" className="mb-3 gap-1.5 border-border bg-background text-primary">
               <Wrench className="size-3" />
