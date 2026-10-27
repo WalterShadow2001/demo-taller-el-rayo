@@ -1,0 +1,65 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Servicio {
+  id              String  @id @default(cuid())
+  nombre          String
+  descripcion     String
+  precioAuto      Float
+  precioCamioneta Float?
+  duracionMin     Int
+  icono           String?
+  citas           Cita[]
+}
+
+model Cliente {
+  id        String     @id @default(cuid())
+  nombre    String
+  email     String     @unique
+  telefono  String
+  vehiculos Vehiculo[]
+  citas     Cita[]
+  creadoEn  DateTime   @default(now())
+}
+
+model Vehiculo {
+  id        String  @id @default(cuid())
+  marca     String
+  modelo    String
+  anio      Int
+  placas    String?
+  color     String?
+  clienteId String
+  cliente   Cliente @relation(fields: [clienteId], references: [id])
+  citas     Cita[]
+}
+
+model Cita {
+  id          String   @id @default(cuid())
+  clienteId   String
+  cliente     Cliente   @relation(fields: [clienteId], references: [id])
+  vehiculoId  String
+  vehiculo    Vehiculo @relation(fields: [vehiculoId], references: [id])
+  servicioId  String
+  servicio    Servicio @relation(fields: [servicioId], references: [id])
+  fecha       String
+  hora        String
+  estado      String   @default("en_espera")
+  precioFinal Float?
+  notas       String?
+  creadoEn    DateTime @default(now())
+}
+
+model HorarioTaller {
+  id         String @id @default(cuid())
+  diaSemana  Int
+  horaInicio String
+  horaFin    String
+}
