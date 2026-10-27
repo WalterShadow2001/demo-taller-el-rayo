@@ -15,7 +15,6 @@ import {
   Star,
   ChevronRight,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import { db } from "@/lib/db";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
@@ -55,11 +54,7 @@ function StatCard({
   delay?: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay }}
-    >
+    <div>
       <Card className="border-border bg-card/70 backdrop-blur">
         <CardContent className="flex flex-col items-start gap-2 p-5">
           <span className="grid size-10 place-items-center rounded-md bg-primary/10 text-primary">
@@ -73,7 +68,7 @@ function StatCard({
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }
 
