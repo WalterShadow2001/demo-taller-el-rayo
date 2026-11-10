@@ -196,7 +196,7 @@ export function CotizadorClient() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Button asChild variant="outline" size="sm" className="gap-1.5">
+            <Button asChild variant="outline" size="sm" className="btn-hazard gap-1.5">
               <Link href={servicioId ? `/citas?servicio=${servicioId}` : "/citas"}>
                 <Zap className="size-4" />
                 Agendar este servicio
@@ -225,9 +225,9 @@ export function CotizadorClient() {
           </div>
 
           {loadingCoti ? (
-            <div className="flex flex-col gap-3">
-              <Skeleton className="h-10 w-40" />
-              <Skeleton className="h-24 w-full" />
+            <div className="flex flex-col items-center gap-3 py-6 text-muted-foreground">
+              <div className="loader-gear" />
+              Calculando estimación…
             </div>
           ) : coti ? (
             <>
@@ -235,7 +235,7 @@ export function CotizadorClient() {
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">
                   Precio base
                 </p>
-                <p className="font-display text-4xl font-bold text-primary">
+                <p className="stat-big text-4xl">
                   {formatPrecio(coti.precio)}
                 </p>
                 <p className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -271,7 +271,7 @@ export function CotizadorClient() {
                 </dl>
               </div>
 
-              <Badge variant="outline" className="w-fit gap-1.5 border-primary/30 bg-primary/10 text-primary">
+              <Badge className="badge-status-glow w-fit gap-1.5 border-primary/30 bg-primary/10 text-primary">
                 <CheckCircle2 className="size-3" />
                 Estimación válida 7 días
               </Badge>

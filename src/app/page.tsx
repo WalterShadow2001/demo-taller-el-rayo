@@ -55,13 +55,13 @@ function StatCard({
 }) {
   return (
     <div>
-      <Card className="border-border bg-card/70 backdrop-blur">
+      <Card className="card-electric-hover border-border bg-card/70 backdrop-blur">
         <CardContent className="flex flex-col items-start gap-2 p-5">
           <span className="grid size-10 place-items-center rounded-md bg-primary/10 text-primary">
             {icon}
           </span>
           <div>
-            <p className="font-display text-2xl font-bold text-foreground">{value}</p>
+            <p className="stat-big text-2xl">{value}</p>
             <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
               {label}
             </p>
@@ -84,16 +84,17 @@ export default async function HomePage() {
         <section className="relative overflow-hidden border-b border-border">
           <div className="bg-industrial-radial absolute inset-0 -z-10" aria-hidden="true" />
           <div className="bg-industrial-grid absolute inset-0 -z-10 opacity-30" aria-hidden="true" />
+          <div className="bg-hazard-stripes absolute inset-0 -z-10" aria-hidden="true" />
           <div className="container relative mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
             <div className="flex flex-col gap-6">
               <Badge className="w-fit gap-1.5 border-primary/30 bg-primary/10 text-primary">
-                <span className="size-1.5 rounded-full bg-primary" />
-                Delicias, Chihuahua
+                <span className="dot-pulse-orange" aria-hidden="true" />
+                Abierto ahora · Delicias, Chihuahua
               </Badge>
               <h1 className="font-display text-4xl font-bold uppercase leading-[0.95] tracking-tight text-foreground sm:text-5xl md:text-6xl">
                 Tu auto en
                 <br />
-                <span className="text-primary">manos expertas.</span>
+                <span className="text-electric-gradient">manos expertas.</span>
                 <br />
                 Servicio mecánico
                 <br />
@@ -105,13 +106,13 @@ export default async function HomePage() {
                 servicio en segundos y sigue el estado en tiempo real.
               </p>
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Button asChild size="lg" className="gap-2">
+                <Button asChild size="lg" className="btn-electric gap-2">
                   <Link href="/citas">
                     <Calendar className="size-4" />
                     Agendar cita
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="gap-2">
+                <Button asChild size="lg" variant="outline" className="btn-hazard gap-2">
                   <Link href="/cotizador">
                     <Calculator className="size-4" />
                     Cotizar servicio
@@ -137,7 +138,7 @@ export default async function HomePage() {
             {/* Hero card */}
             <div className="relative">
               <div className="absolute -inset-2 rounded-2xl bg-primary/5 blur-2xl" aria-hidden="true" />
-              <Card className="relative border-border bg-card/90 backdrop-blur">
+              <Card className="card-steel relative">
                 <CardContent className="flex flex-col gap-4 p-6">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-sm font-semibold uppercase tracking-widest text-muted-foreground">
@@ -152,7 +153,7 @@ export default async function HomePage() {
                     Elige el servicio y el tipo de vehículo. Te mostramos el precio estimado,
                     el tiempo en taller y un desglose claro.
                   </p>
-                  <Button asChild className="w-fit gap-2" size="lg">
+                  <Button asChild className="btn-electric w-fit gap-2" size="lg">
                     <Link href="/cotizador">
                       Ir al cotizador
                       <ArrowRight className="size-4" />
@@ -178,6 +179,8 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
+
+        <div className="divider-hazard w-32 mx-auto my-12" aria-hidden="true" />
 
         {/* Stats */}
         <section className="border-b border-border bg-card">
@@ -226,7 +229,7 @@ export default async function HomePage() {
                   certificados. Precios claros, sin sorpresas.
                 </p>
               </div>
-              <Button asChild variant="outline" className="gap-2">
+              <Button asChild variant="outline" className="btn-hazard gap-2">
                 <Link href="/servicios">
                   Ver catálogo completo
                   <ChevronRight className="size-4" />
@@ -264,7 +267,7 @@ export default async function HomePage() {
         {/* Contact / location */}
         <section className="bg-card border-b border-border">
           <div className="container mx-auto grid max-w-6xl gap-6 px-4 py-16 md:grid-cols-3">
-            <Card className="border-border bg-background">
+            <Card className="card-electric-hover border-border bg-background">
               <CardContent className="flex flex-col gap-3 p-6">
                 <span className="grid size-10 place-items-center rounded-md bg-primary/10 text-primary">
                   <Phone className="size-5" />
@@ -284,7 +287,7 @@ export default async function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="border-border bg-background">
+            <Card className="card-electric-hover border-border bg-background">
               <CardContent className="flex flex-col gap-3 p-6">
                 <span className="grid size-10 place-items-center rounded-md bg-primary/10 text-primary">
                   <MapPin className="size-5" />
@@ -308,7 +311,7 @@ export default async function HomePage() {
               </CardContent>
             </Card>
 
-            <Card className="border-border bg-background">
+            <Card className="card-electric-hover border-border bg-background">
               <CardContent className="flex flex-col gap-3 p-6">
                 <span className="grid size-10 place-items-center rounded-md bg-primary/10 text-primary">
                   <Clock className="size-5" />
@@ -329,22 +332,23 @@ export default async function HomePage() {
         {/* CTA */}
         <section className="relative overflow-hidden">
           <div className="bg-industrial-radial absolute inset-0 -z-10" aria-hidden="true" />
+          <div className="bg-hazard-stripes absolute inset-0 -z-10" aria-hidden="true" />
           <div className="container relative mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-16 text-center">
             <h2 className="font-display text-3xl font-bold uppercase tracking-tight text-foreground sm:text-4xl">
-              Agenda tu cita en 4 pasos
+              Agenda tu cita en <span className="text-electric-gradient">4 pasos</span>
             </h2>
             <p className="max-w-xl text-muted-foreground">
               Sin filas, sin esperas. Reserva en línea, recibe tu folio y sigue el estado
               de tu vehículo desde tu celular.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <Button asChild size="lg" className="gap-2">
+              <Button asChild size="lg" className="btn-electric gap-2">
                 <Link href="/citas">
                   <Calendar className="size-4" />
                   Agendar ahora
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="gap-2">
+              <Button asChild size="lg" variant="outline" className="btn-hazard gap-2">
                 <Link href="/portal">
                   Ver mis citas
                   <ArrowRight className="size-4" />

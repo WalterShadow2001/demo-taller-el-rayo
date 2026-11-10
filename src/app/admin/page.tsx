@@ -84,8 +84,8 @@ export default function AdminDashboard() {
         </div>
 
         {loading ? (
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Loader2 className="size-5 animate-spin text-primary" />
+          <div className="flex flex-col items-center gap-3 py-12 text-muted-foreground">
+            <div className="loader-gear" />
             Cargando estadísticas…
           </div>
         ) : stats ? (
@@ -99,25 +99,25 @@ export default function AdminDashboard() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <KpiCard
                 icon={<CalendarDays className="size-5" />}
-                value={stats.counts.today}
+                value={<span className="stat-big text-2xl">{stats.counts.today}</span>}
                 label="Citas de hoy"
                 accent="var(--status-en_proceso)"
               />
               <KpiCard
                 icon={<DollarSign className="size-5" />}
-                value={formatPrecio(stats.ingresosMes)}
+                value={<span className="stat-big text-2xl">{formatPrecio(stats.ingresosMes)}</span>}
                 label="Ingresos del mes"
                 accent="var(--primary)"
               />
               <KpiCard
                 icon={<TrendingUp className="size-5" />}
-                value={stats.counts.en_espera}
+                value={<span className="stat-big text-2xl">{stats.counts.en_espera}</span>}
                 label="Citas en espera"
                 accent="var(--status-en_espera)"
               />
               <KpiCard
                 icon={<Wrench className="size-5" />}
-                value={stats.counts.en_proceso}
+                value={<span className="stat-big text-2xl">{stats.counts.en_proceso}</span>}
                 label="Citas en proceso"
                 accent="var(--status-en_proceso)"
               />
@@ -379,12 +379,12 @@ function KpiCard({
   accent = "var(--primary)",
 }: {
   icon: React.ReactNode;
-  value: string | number;
+  value: React.ReactNode;
   label: string;
   accent?: string;
 }) {
   return (
-    <Card className="border-border bg-card">
+    <Card className="card-electric-hover border-border bg-card">
       <CardContent className="flex items-center gap-3 p-5">
         <span
           className="grid size-11 place-items-center rounded-md"
@@ -396,7 +396,7 @@ function KpiCard({
           {icon}
         </span>
         <div>
-          <p className="font-display text-2xl font-bold text-foreground">{value}</p>
+          {value}
           <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
             {label}
           </p>

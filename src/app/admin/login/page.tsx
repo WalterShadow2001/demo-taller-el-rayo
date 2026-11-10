@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
@@ -11,7 +12,6 @@ import {
   Loader2,
   LogIn,
   Shield,
-  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -65,6 +65,7 @@ function AdminLoginInner() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-card px-4 py-12">
       <div className="bg-industrial-radial absolute inset-0 -z-10" aria-hidden="true" />
+      <div className="bg-hazard-stripes absolute inset-0 -z-10" aria-hidden="true" />
       <Link
         href="/"
         className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
@@ -79,15 +80,18 @@ function AdminLoginInner() {
         transition={{ duration: 0.3 }}
         className="w-full max-w-md"
       >
-        <Card className="border-border bg-background">
+        <Card className="card-steel">
           <CardContent className="flex flex-col gap-6 p-6">
             <div className="flex flex-col items-center gap-3 text-center">
-              <span className="grid size-14 place-items-center rounded-md bg-primary text-primary-foreground shadow-sm">
-                <Zap className="size-8" strokeWidth={2.5} />
-              </span>
+              <Image
+                src="/logo.svg"
+                alt="Taller El Rayo"
+                width={64}
+                height={64}
+              />
               <div>
                 <h1 className="font-display text-2xl font-bold uppercase tracking-tight text-foreground">
-                  Acceso administrador
+                  Acceso <span className="text-electric-gradient">administrador</span>
                 </h1>
                 <p className="text-sm text-muted-foreground">
                   Taller El Rayo · Panel interno
@@ -112,7 +116,7 @@ function AdminLoginInner() {
                   required
                 />
               </div>
-              <Button type="submit" disabled={loading} className="gap-1.5">
+              <Button type="submit" disabled={loading} className="btn-electric gap-1.5">
                 {loading ? (
                   <Loader2 className="size-4 animate-spin" />
                 ) : (

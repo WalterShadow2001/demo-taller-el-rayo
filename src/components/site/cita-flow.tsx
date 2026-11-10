@@ -12,7 +12,6 @@ import {
   CheckCircle2,
   ChevronRight,
   Clock,
-  Loader2,
   Mail,
   Phone,
   Search,

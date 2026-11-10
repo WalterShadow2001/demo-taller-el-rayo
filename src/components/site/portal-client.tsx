@@ -143,7 +143,7 @@ export function PortalClient() {
               <p className="text-sm text-muted-foreground">{cliente.email}</p>
             </div>
           </div>
-          <Button onClick={handleLogout} variant="outline" size="sm" className="gap-1.5">
+          <Button onClick={handleLogout} variant="outline" size="sm" className="btn-hazard gap-1.5">
             <LogOut className="size-4" />
             Cerrar sesión
           </Button>
@@ -153,7 +153,7 @@ export function PortalClient() {
           <h2 className="font-display text-lg font-semibold text-foreground">
             Mis citas ({citas.length})
           </h2>
-          <Button asChild size="sm" className="gap-1.5">
+          <Button asChild size="sm" className="btn-electric gap-1.5">
             <Link href="/citas">
               <Calendar className="size-4" />
               Nueva cita
@@ -168,7 +168,7 @@ export function PortalClient() {
               <p className="text-muted-foreground">
                 No tienes citas agendadas todavía.
               </p>
-              <Button asChild className="gap-1.5">
+              <Button asChild className="btn-electric gap-1.5">
                 <Link href="/citas">
                   Agendar mi primera cita
                   <ArrowRight className="size-4" />
@@ -186,7 +186,7 @@ export function PortalClient() {
                 transition={{ duration: 0.25 }}
               >
                 <Link href={`/portal/${c.id}`}>
-                  <Card className="border-border bg-card transition-colors hover:border-primary/60">
+                  <Card className="card-electric-hover border-border bg-card transition-colors hover:border-primary/60">
                     <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex flex-col gap-1">
                         <div className="flex items-center gap-2">
@@ -256,7 +256,7 @@ export function PortalClient() {
               required
             />
           </div>
-          <Button type="submit" disabled={loading} className="gap-1.5">
+          <Button type="submit" disabled={loading} className="btn-electric gap-1.5">
             {loading && <Loader2 className="size-4 animate-spin" />}
             Entrar
           </Button>

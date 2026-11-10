@@ -99,8 +99,8 @@ export function PortalCitaDetalle() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center gap-2 py-12 text-muted-foreground">
-        <Loader2 className="size-5 animate-spin text-primary" />
+      <div className="flex flex-col items-center justify-center gap-3 py-12 text-muted-foreground">
+        <div className="loader-gear" />
         Cargando cita…
       </div>
     );
@@ -265,7 +265,7 @@ export function PortalCitaDetalle() {
                 {formatPrecio(precioEstimado)}
               </p>
             </div>
-            <Button asChild size="sm" className="gap-1.5">
+            <Button asChild size="sm" className="btn-electric gap-1.5">
               <a href={whatsapp} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="size-4" />
                 WhatsApp

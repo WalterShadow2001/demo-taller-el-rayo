@@ -88,7 +88,7 @@ export default async function ConfirmacionPage({
               </span>
               <div>
                 <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-foreground">
-                  ¡Cita confirmada!
+                  ¡Cita <span className="text-electric-gradient">confirmada!</span>
                 </h1>
                 <p className="text-sm text-muted-foreground">
                   Folio: <span className="font-mono font-semibold text-foreground">{folio}</span>
@@ -102,13 +102,13 @@ export default async function ConfirmacionPage({
           <div className="container mx-auto max-w-3xl px-4">
             <div className="grid gap-4">
               {/* Status tracker */}
-              <Card className="border-border bg-card">
+              <Card className="card-electric-hover border-border bg-card">
                 <CardContent className="flex flex-col gap-4 p-6">
                   <div className="flex items-center justify-between">
                     <h2 className="font-display text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                       Estado de tu cita
                     </h2>
-                    <Badge variant="outline" className="gap-1.5">
+                    <Badge className="badge-status-glow gap-1.5">
                       <span
                         className="size-2 rounded-full status-dot-en_espera"
                         aria-hidden="true"
@@ -125,7 +125,7 @@ export default async function ConfirmacionPage({
               </Card>
 
               {/* Detalles */}
-              <Card className="border-border bg-card">
+              <Card className="card-electric-hover border-border bg-card">
                 <CardContent className="flex flex-col gap-4 p-6">
                   <h2 className="font-display text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                     Detalles
@@ -181,7 +181,7 @@ export default async function ConfirmacionPage({
                       <span className="text-xs uppercase tracking-widest text-muted-foreground">
                         Precio estimado
                       </span>
-                      <span className="font-display text-2xl font-bold text-primary">
+                      <span className="stat-big text-2xl">
                         {formatPrecio(precioEstimado)}
                       </span>
                       <span className="text-xs text-muted-foreground">
@@ -194,7 +194,7 @@ export default async function ConfirmacionPage({
               </Card>
 
               {/* Acciones */}
-              <Card className="border-border bg-card">
+              <Card className="card-electric-hover border-border bg-card">
                 <CardContent className="flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex flex-col gap-1">
                     <h3 className="font-display text-sm font-semibold text-foreground">
@@ -205,13 +205,13 @@ export default async function ConfirmacionPage({
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Button asChild variant="outline" size="sm" className="gap-1.5">
+                    <Button asChild variant="outline" size="sm" className="btn-hazard gap-1.5">
                       <Link href="/portal">
                         <User className="size-4" />
                         Ver en portal
                       </Link>
                     </Button>
-                    <Button asChild size="sm" className="gap-1.5">
+                    <Button asChild size="sm" className="btn-electric gap-1.5">
                       <a href={whatsapp} target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="size-4" />
                         WhatsApp
@@ -222,7 +222,7 @@ export default async function ConfirmacionPage({
               </Card>
 
               {/* Location reminder */}
-              <Card className="border-border bg-card">
+              <Card className="card-electric-hover border-border bg-card">
                 <CardContent className="flex flex-col gap-3 p-6">
                   <h3 className="font-display text-sm font-semibold text-foreground">
                     Cómo llegar
@@ -231,7 +231,7 @@ export default async function ConfirmacionPage({
                     <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
                     Av. Agricultura 125, Col. Centro, Delicias, Chihuahua
                   </p>
-                  <Button asChild variant="outline" size="sm" className="w-fit gap-1.5">
+                  <Button asChild variant="outline" size="sm" className="btn-hazard w-fit gap-1.5">
                     <a
                       href="https://www.google.com/maps?q=Delicias+Chihuahua"
                       target="_blank"
@@ -242,6 +242,8 @@ export default async function ConfirmacionPage({
                   </Button>
                 </CardContent>
               </Card>
+
+              <div className="divider-hazard w-32 mx-auto my-4" aria-hidden="true" />
             </div>
           </div>
         </section>

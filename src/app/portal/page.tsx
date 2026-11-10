@@ -11,15 +11,16 @@ export default function PortalPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <section className="border-b border-border bg-card/50">
+        <section className="relative border-b border-border bg-card/50">
           <div className="bg-industrial-grid absolute inset-0 -z-10 opacity-20" aria-hidden="true" />
+          <div className="bg-hazard-stripes absolute inset-0 -z-10" aria-hidden="true" />
           <div className="container relative mx-auto max-w-6xl px-4 py-10 md:py-14">
             <Badge variant="outline" className="mb-3 gap-1.5 border-border bg-background text-primary">
               <User className="size-3" />
               Portal del cliente
             </Badge>
             <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              Mis citas
+              Mis <span className="text-electric-gradient">citas</span>
             </h1>
             <p className="mt-3 max-w-2xl text-muted-foreground">
               Inicia sesión con tu correo para ver todas tus citas agendadas y dar
@@ -33,6 +34,8 @@ export default function PortalPage() {
             <PortalClient />
           </div>
         </section>
+
+        <div className="divider-hazard w-32 mx-auto my-8" aria-hidden="true" />
       </main>
       <SiteFooter />
     </div>

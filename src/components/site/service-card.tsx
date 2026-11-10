@@ -35,7 +35,7 @@ export function ServiceCard({ servicio }: { servicio: ServicioData }) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="group relative overflow-hidden border-border bg-card transition-colors hover:border-primary/60">
+      <Card className="card-electric-hover group relative overflow-hidden border-border bg-card transition-colors hover:border-primary/60">
         <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
         <CardContent className="flex h-full flex-col gap-3 p-5">
           <div className="flex items-start justify-between gap-3">
@@ -79,7 +79,7 @@ export function ServiceCard({ servicio }: { servicio: ServicioData }) {
               <Button
                 asChild
                 size="sm"
-                className="gap-1.5"
+                className="btn-electric gap-1.5"
               >
                 <Link href={`/citas?servicio=${servicio.id}`}>
                   Agendar
@@ -90,7 +90,7 @@ export function ServiceCard({ servicio }: { servicio: ServicioData }) {
                 asChild
                 size="sm"
                 variant="outline"
-                className="gap-1.5"
+                className="btn-hazard gap-1.5"
               >
                 <Link href={`/cotizador?servicio=${servicio.id}`}>
                   Cotizar
@@ -122,7 +122,7 @@ export function EstadoBadge({ estado }: { estado: EstadoCita | string }) {
   return (
     <Badge
       variant="outline"
-      className="gap-1.5 border-border bg-secondary/50 font-medium"
+      className="badge-status-glow gap-1.5 border-border bg-secondary/50 font-medium"
       style={{ color: "var(--foreground)" }}
     >
       <span

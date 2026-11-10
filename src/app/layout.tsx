@@ -32,7 +32,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Taller El Rayo" }],
   icons: {
-    icon: "/logo.svg",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: ["/favicon.svg"],
+    apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     title: "Taller El Rayo | Mecánica Automotriz",

@@ -122,7 +122,7 @@ export function StepperNavButtons({
           onClick={onSubmit}
           disabled={!canProceed || isSubmitting}
           whileTap={{ scale: 0.97 }}
-          className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 disabled:opacity-50"
+          className="btn-electric inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold shadow-sm disabled:opacity-50"
         >
           {isSubmitting && <Loader2 className="size-4 animate-spin" />}
           {submitLabel}
@@ -134,7 +134,7 @@ export function StepperNavButtons({
           onClick={onNext}
           disabled={!canProceed}
           whileTap={{ scale: 0.97 }}
-          className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 disabled:opacity-50"
+          className="btn-electric inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold shadow-sm disabled:opacity-50"
         >
           {nextLabel}
           <ChevronRight className="size-4" />

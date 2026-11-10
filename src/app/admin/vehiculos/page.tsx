@@ -87,7 +87,7 @@ export default function AdminVehiculosPage() {
             disabled={refreshing}
             variant="outline"
             size="sm"
-            className="gap-1.5"
+            className="btn-hazard gap-1.5"
           >
             {refreshing ? (
               <Loader2 className="size-4 animate-spin" />
@@ -125,8 +125,8 @@ export default function AdminVehiculosPage() {
         </Card>
 
         {loading ? (
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Loader2 className="size-5 animate-spin text-primary" />
+          <div className="flex flex-col items-center gap-3 py-12 text-muted-foreground">
+            <div className="loader-gear" />
             Cargando vehículos…
           </div>
         ) : filtered.length === 0 ? (
@@ -143,7 +143,7 @@ export default function AdminVehiculosPage() {
             className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filtered.map((v) => (
-              <Card key={v.id} className="border-border bg-card">
+              <Card key={v.id} className="card-electric-hover border-border bg-card">
                 <CardContent className="flex flex-col gap-3 p-4">
                   <div className="flex items-start justify-between gap-2">
                     <span className="grid size-10 place-items-center rounded-md bg-primary/15 text-primary">

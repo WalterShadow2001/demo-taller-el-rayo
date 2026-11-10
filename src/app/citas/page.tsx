@@ -13,15 +13,16 @@ export default function CitasPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <section className="border-b border-border bg-card/50">
+        <section className="relative border-b border-border bg-card/50">
           <div className="bg-industrial-grid absolute inset-0 -z-10 opacity-20" aria-hidden="true" />
+          <div className="bg-hazard-stripes absolute inset-0 -z-10" aria-hidden="true" />
           <div className="container relative mx-auto max-w-6xl px-4 py-10 md:py-14">
             <Badge variant="outline" className="mb-3 gap-1.5 border-border bg-background text-primary">
               <Wrench className="size-3" />
               Reservación
             </Badge>
             <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              Agenda tu cita
+              Agenda tu <span className="text-electric-gradient">cita</span>
             </h1>
             <p className="mt-3 max-w-2xl text-muted-foreground">
               Sigue los 4 pasos. Te tomará menos de 2 minutos. Recibirás un folio y un
@@ -35,7 +36,8 @@ export default function CitasPage() {
             <Suspense
               fallback={
                 <Card className="border-border bg-card">
-                  <CardContent className="p-10 text-center text-muted-foreground">
+                  <CardContent className="flex flex-col items-center gap-3 p-10 text-center text-muted-foreground">
+                    <div className="loader-gear" />
                     Cargando…
                   </CardContent>
                 </Card>
@@ -45,6 +47,8 @@ export default function CitasPage() {
             </Suspense>
           </div>
         </section>
+
+        <div className="divider-hazard w-32 mx-auto my-8" aria-hidden="true" />
       </main>
       <SiteFooter />
     </div>

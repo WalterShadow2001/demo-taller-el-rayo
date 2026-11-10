@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Zap, Phone, MapPin, Clock, Facebook, Instagram } from "lucide-react";
+import Image from "next/image";
+import { Phone, MapPin, Clock, Facebook, Instagram } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -8,14 +9,18 @@ export function SiteFooter() {
       <div className="container mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
         {/* Brand */}
         <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="grid size-9 place-items-center rounded-md bg-primary text-primary-foreground">
-              <Zap className="size-5" strokeWidth={2.5} />
-            </span>
+          <Link href="/" className="group flex items-center gap-2.5">
+            <Image
+              src="/logo.svg"
+              alt="Taller El Rayo"
+              width={44}
+              height={44}
+              className="transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+            />
             <span className="font-display text-lg font-bold uppercase tracking-wide">
               Taller El Rayo
             </span>
-          </div>
+          </Link>
           <p className="text-sm text-muted-foreground">
             Mecánica automotriz profesional en Delicias, Chihuahua. Servicio honesto y
             trabajo garantizado desde 2008.

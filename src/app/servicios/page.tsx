@@ -25,15 +25,16 @@ export default async function ServiciosPage() {
       <SiteHeader />
       <main className="flex-1">
         {/* Header band */}
-        <section className="border-b border-border bg-card/50">
+        <section className="relative border-b border-border bg-card/50">
           <div className="bg-industrial-grid absolute inset-0 -z-10 opacity-20" aria-hidden="true" />
+          <div className="bg-hazard-stripes absolute inset-0 -z-10" aria-hidden="true" />
           <div className="container relative mx-auto max-w-6xl px-4 py-12 md:py-16">
             <Badge variant="outline" className="mb-3 gap-1.5 border-border bg-background text-primary">
               <Wrench className="size-3" />
               Catálogo
             </Badge>
             <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              Servicios mecánicos
+              Servicios <span className="text-electric-gradient">mecánicos</span>
             </h1>
             <p className="mt-3 max-w-2xl text-muted-foreground">
               Todos los servicios que necesitas para mantener tu vehículo en óptimas
@@ -54,7 +55,7 @@ export default async function ServiciosPage() {
               </span>
             </div>
             {servicios.length === 0 ? (
-              <Card className="border-border bg-card">
+              <Card className="card-electric-hover border-border bg-card">
                 <CardContent className="flex flex-col items-center gap-2 p-12 text-center">
                   <Wrench className="size-8 text-muted-foreground" />
                   <p className="text-muted-foreground">
@@ -67,6 +68,8 @@ export default async function ServiciosPage() {
             )}
           </div>
         </section>
+
+        <div className="divider-hazard w-32 mx-auto my-8" aria-hidden="true" />
       </main>
       <SiteFooter />
     </div>

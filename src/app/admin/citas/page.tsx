@@ -131,7 +131,7 @@ export default function AdminCitasPage() {
             disabled={refreshing}
             variant="outline"
             size="sm"
-            className="gap-1.5"
+            className="btn-hazard gap-1.5"
           >
             {refreshing ? (
               <Loader2 className="size-4 animate-spin" />
@@ -207,8 +207,8 @@ export default function AdminCitasPage() {
 
         {/* List */}
         {loading ? (
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Loader2 className="size-5 animate-spin text-primary" />
+          <div className="flex flex-col items-center gap-3 py-12 text-muted-foreground">
+            <div className="loader-gear" />
             Cargando citas…
           </div>
         ) : filtered.length === 0 ? (
@@ -290,7 +290,7 @@ function CitaRow({ cita, onUpdated }: { cita: Cita; onUpdated: () => void }) {
   };
 
   return (
-    <Card className="border-border bg-card">
+    <Card className="card-electric-hover border-border bg-card">
       <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
@@ -332,7 +332,7 @@ function CitaRow({ cita, onUpdated }: { cita: Cita; onUpdated: () => void }) {
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-1.5">
+              <Button variant="outline" size="sm" className="btn-hazard gap-1.5">
                 Editar
               </Button>
             </SheetTrigger>
@@ -400,7 +400,7 @@ function CitaRow({ cita, onUpdated }: { cita: Cita; onUpdated: () => void }) {
                   </p>
                 </div>
 
-                <Button onClick={handleSave} disabled={saving} className="gap-1.5">
+                <Button onClick={handleSave} disabled={saving} className="btn-electric gap-1.5">
                   {saving && <Loader2 className="size-4 animate-spin" />}
                   Guardar cambios
                 </Button>

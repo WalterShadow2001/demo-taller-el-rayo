@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   CalendarDays,
@@ -8,7 +9,6 @@ import {
   LayoutDashboard,
   LogOut,
   Users,
-  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -40,10 +40,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <header className="border-b border-border bg-card">
         <div className="hazard-stripes h-1 w-full" aria-hidden="true" />
         <div className="container mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
-          <Link href="/admin" className="flex items-center gap-2.5">
-            <span className="grid size-8 place-items-center rounded-md bg-primary text-primary-foreground">
-              <Zap className="size-4" strokeWidth={2.5} />
-            </span>
+          <Link href="/admin" className="flex items-center gap-2.5 group">
+            <Image
+              src="/logo.svg"
+              alt="Taller El Rayo Admin"
+              width={34}
+              height={34}
+              className="transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+            />
             <span className="font-display text-base font-bold uppercase tracking-wide">
               El Rayo · Admin
             </span>
