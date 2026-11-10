@@ -28,7 +28,7 @@ import {
   formatHora12,
   formatPrecio,
 } from "@/lib/cita-helpers";
-import { EstadoBadge, StatusTrackerIndustrial } from "./service-card";
+import { EstadoBadge, ServicioIcon, StatusTrackerIndustrial } from "./service-card";
 
 interface CitaDetalle {
   id: string;
@@ -168,9 +168,12 @@ export function PortalCitaDetalle() {
       <Card className="border-border bg-card">
         <CardContent className="flex flex-col gap-3 p-6">
           <div className="flex items-center gap-3">
-            <span className="text-3xl" aria-hidden="true">
-              {cita.servicio.icono ?? "🔧"}
-            </span>
+            <ServicioIcon
+              icono={cita.servicio.icono}
+              nombre={cita.servicio.nombre}
+              size="size-12"
+              emojiClass="text-3xl"
+            />
             <div>
               <h1 className="font-display text-2xl font-bold text-foreground">
                 {cita.servicio.nombre}

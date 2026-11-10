@@ -33,6 +33,7 @@ import {
   toDateKey,
 } from "@/lib/cita-helpers";
 import { CitaStepper, StepperNavButtons } from "./cita-stepper";
+import { ServicioIcon } from "./service-card";
 
 interface Servicio {
   id: string;
@@ -470,7 +471,12 @@ function StepServicio({
                   )}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-2xl">{s.icono ?? "🔧"}</span>
+                    <ServicioIcon
+                      icono={s.icono}
+                      nombre={s.nombre}
+                      size="size-10"
+                      emojiClass="text-2xl"
+                    />
                     {active && <CheckCircle2 className="size-4 text-primary" />}
                   </div>
                   <span className="font-display text-sm font-semibold text-foreground">

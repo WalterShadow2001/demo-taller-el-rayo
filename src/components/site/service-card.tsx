@@ -32,6 +32,46 @@ export interface ServiceCardProps {
   hazardBorder?: boolean;
 }
 
+/**
+ * Renders a servicio's `icono` field as either:
+ *   - a real photo (when icono is an http URL), or
+ *   - an emoji fallback.
+ *
+ * `size` maps to a Tailwind size utility (e.g. "size-10", "size-12").
+ */
+export function ServicioIcon({
+  icono,
+  nombre,
+  size = "size-12",
+  emojiClass = "text-2xl",
+}: {
+  icono: string | null | undefined;
+  nombre: string;
+  size?: string;
+  emojiClass?: string;
+}) {
+  if (icono && icono.startsWith("http")) {
+    return (
+      <span className={`relative inline-flex ${size} shrink-0 overflow-hidden rounded-md bg-muted`}>
+        <img
+          src={icono}
+          alt={`Foto del servicio: ${nombre}`}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </span>
+    );
+  }
+  return (
+    <span
+      className={`inline-grid ${size} shrink-0 place-items-center rounded-md bg-secondary ${emojiClass}`}
+      aria-hidden="true"
+    >
+      {icono || "🔧"}
+    </span>
+  );
+}
+
 export function ServiceCard({ servicio, hazardBorder = false }: ServiceCardProps) {
   return (
     <motion.div
@@ -46,22 +86,33 @@ export function ServiceCard({ servicio, hazardBorder = false }: ServiceCardProps
           hazardBorder && "hazard-border-hover",
         )
       }>
-        <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-        <CardContent className="flex h-full flex-col gap-3 p-5">
-          <div className="flex items-start justify-between gap-3">
-            <span
-              className="grid size-12 shrink-0 place-items-center rounded-md bg-secondary text-2xl"
-              aria-hidden="true"
-            >
-              {servicio.icono ?? "🔧"}
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-secondary/60 px-2.5 py-1 text-xs font-medium text-muted-foreground">
+        <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 transition-opacity group-hover:opacity-100 z-10" />
+        <CardContent className="flex h-full flex-col gap-3 p-0">
+          {/* Service photo / icon */}
+          <div className="relative aspect-video overflow-hidden rounded-t-md bg-muted">
+            {servicio.icono && servicio.icono.startsWith("http") ? (
+              <img
+                src={servicio.icono}
+                alt={`Foto del servicio: ${servicio.nombre}`}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+            ) : (
+              <div
+                className="grid h-full w-full place-items-center bg-secondary text-5xl"
+                aria-hidden="true"
+              >
+                {servicio.icono || "🔧"}
+              </div>
+            )}
+            {/* Duration badge overlay */}
+            <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-background/85 px-2.5 py-1 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur">
               <Clock className="size-3" />
               {formatDuracion(servicio.duracionMin)}
             </span>
           </div>
 
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 px-5">
             <h3 className="font-display text-lg font-semibold leading-tight text-foreground">
               {servicio.nombre}
             </h3>
@@ -70,7 +121,7 @@ export function ServiceCard({ servicio, hazardBorder = false }: ServiceCardProps
             </p>
           </div>
 
-          <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-3">
+          <div className="mt-auto flex items-end justify-between gap-3 border-t border-border px-5 pb-5 pt-3">
             <div className="flex flex-col">
               <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
                 Desde

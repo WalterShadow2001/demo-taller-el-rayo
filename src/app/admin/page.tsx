@@ -292,7 +292,10 @@ export default function AdminDashboard() {
                         >
                           <div className="flex flex-col">
                             <span className="font-semibold">
-                              {c.servicio.icono} {c.servicio.nombre}
+                              {c.servicio.icono && !c.servicio.icono.startsWith("http")
+                                ? `${c.servicio.icono} `
+                                : ""}
+                              {c.servicio.nombre}
                             </span>
                             <span className="text-xs text-muted-foreground">
                               {c.vehiculo.marca} {c.vehiculo.modelo} · {c.cliente.nombre}
@@ -327,7 +330,10 @@ export default function AdminDashboard() {
                         >
                           <div className="flex flex-col">
                             <span className="font-semibold">
-                              {c.servicio.icono} {c.servicio.nombre}
+                              {c.servicio.icono && !c.servicio.icono.startsWith("http")
+                                ? `${c.servicio.icono} `
+                                : ""}
+                              {c.servicio.nombre}
                             </span>
                             <span className="text-xs text-muted-foreground">
                               {c.vehiculo.marca} {c.vehiculo.modelo} · {c.cliente.nombre}

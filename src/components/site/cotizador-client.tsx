@@ -31,6 +31,7 @@ import {
   formatPrecio,
 } from "@/lib/cita-helpers";
 import { cn } from "@/lib/utils";
+import { ServicioIcon } from "./service-card";
 
 interface Servicio {
   id: string;
@@ -184,7 +185,10 @@ export function CotizadorClient() {
                 <SelectContent>
                   {servicios.map((s) => (
                     <SelectItem key={s.id} value={s.id}>
-                      {s.icono ? `${s.icono} ` : ""}{s.nombre}
+                      {s.icono && !s.icono.startsWith("http")
+                        ? `${s.icono} `
+                        : ""}
+                      {s.nombre}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -220,7 +224,12 @@ export function CotizadorClient() {
               Estimación
             </h2>
             {servicio?.icono ? (
-              <span className="text-3xl" aria-hidden="true">{servicio.icono}</span>
+              <ServicioIcon
+                icono={servicio.icono}
+                nombre={servicio.nombre}
+                size="size-10"
+                emojiClass="text-3xl"
+              />
             ) : null}
           </div>
 

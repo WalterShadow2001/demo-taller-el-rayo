@@ -31,7 +31,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { EstadoBadge } from "@/components/site/service-card";
+import { EstadoBadge, ServicioIcon } from "@/components/site/service-card";
 import {
   ESTADOS_CITA,
   formatFechaCorta,
@@ -294,9 +294,12 @@ function CitaRow({ cita, onUpdated }: { cita: Cita; onUpdated: () => void }) {
       <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
-            <span className="text-xl" aria-hidden="true">
-              {cita.servicio.icono ?? "🔧"}
-            </span>
+            <ServicioIcon
+              icono={cita.servicio.icono}
+              nombre={cita.servicio.nombre}
+              size="size-8"
+              emojiClass="text-xl"
+            />
             <span className="font-display text-base font-semibold text-foreground">
               {cita.servicio.nombre}
             </span>

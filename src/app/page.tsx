@@ -27,6 +27,10 @@ import { Badge } from "@/components/ui/badge";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+// Hero background photo (mechanic working in auto repair shop), sourced via z-ai image-search
+const HERO_IMAGE_URL =
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3bb99ce609da.png";
+
 async function getHomeData() {
   try {
     const [servicios, citasCount, vehiculosCount, clientesCount] = await Promise.all([
@@ -82,6 +86,15 @@ export default async function HomePage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="relative overflow-hidden border-b border-border">
+          <div
+            className="absolute inset-0 -z-10 bg-cover bg-center opacity-[0.13] dark:opacity-[0.22]"
+            style={{ backgroundImage: `url(${HERO_IMAGE_URL})` }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 via-background/40 to-background"
+            aria-hidden="true"
+          />
           <div className="bg-industrial-radial absolute inset-0 -z-10" aria-hidden="true" />
           <div className="bg-industrial-grid absolute inset-0 -z-10 opacity-30" aria-hidden="true" />
           <div className="bg-hazard-stripes absolute inset-0 -z-10" aria-hidden="true" />
