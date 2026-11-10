@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -20,63 +20,42 @@ export function CitaStepper({
   onStepClick?: (i: number) => void;
 }) {
   return (
-    <ol className="flex w-full items-center">
+    <div className="industrial-stepper">
       {steps.map((s, i) => {
         const done = i < current;
         const active = i === current;
         const last = i === steps.length - 1;
         return (
-          <li
+          <div
             key={i}
-            className={cn("flex flex-1 items-center", last ? "flex-none" : "flex-1")}
+            className={cn(
+              "industrial-step",
+              done && "completed",
+              active && "active",
+            )}
           >
             <button
               type="button"
               onClick={() => onStepClick?.(i)}
               disabled={i > current || !onStepClick}
               className={cn(
-                "flex items-center gap-2 rounded-md px-2 py-1.5 text-left transition-colors disabled:cursor-not-allowed",
-                onStepClick && i <= current ? "hover:bg-secondary" : "cursor-default",
+                "flex w-full flex-col items-center gap-0 bg-transparent transition-colors disabled:cursor-not-allowed",
+                onStepClick && i <= current ? "hover:bg-secondary/30" : "cursor-default",
               )}
+              aria-current={active ? "step" : undefined}
             >
-              <span
-                className={cn(
-                  "grid size-8 shrink-0 place-items-center rounded-full border-2 text-xs font-bold transition-colors",
-                  done
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : active
-                      ? "border-primary text-primary"
-                      : "border-border text-muted-foreground",
-                )}
-              >
-                {done ? <Check className="size-4" /> : i + 1}
+              <span className="industrial-step-circle">
+                {done ? "" : i + 1}
               </span>
-              <span className="hidden flex-col sm:flex">
-                <span
-                  className={cn(
-                    "font-display text-sm font-semibold leading-none",
-                    active || done ? "text-foreground" : "text-muted-foreground",
-                  )}
-                >
-                  {s.title}
-                </span>
-                {s.description ? (
-                  <span className="text-[11px] text-muted-foreground">{s.description}</span>
-                ) : null}
-              </span>
+              <span className="industrial-step-label">{s.title}</span>
             </button>
             {!last && (
-              <span
-                className={cn(
-                  "mx-1 h-px flex-1",
-                  done ? "bg-primary" : "bg-border",
-                )}
-              />
+              <span className="industrial-step-connector" aria-hidden="true" />
             )}
-          </li>
+          </div>
         );
       })}
-    </ol>
+    </div>
   );
 }
 

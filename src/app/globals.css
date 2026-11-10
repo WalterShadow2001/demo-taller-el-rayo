@@ -487,3 +487,327 @@
   border-radius: 50%;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
+
+/* === More uiverse-inspired effects — per page variety === */
+
+/* ====== Lightning Flash (for hero accent on home) ====== */
+.lightning-flash {
+  display: inline-block;
+  animation: lightning-flash 4s ease-in-out infinite;
+}
+@keyframes lightning-flash {
+  0%, 90%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 210, 63, 0.5));
+  }
+  92% {
+    opacity: 0.3;
+    filter: drop-shadow(0 0 20px rgba(255, 210, 63, 0));
+  }
+  94% {
+    opacity: 1;
+    filter: drop-shadow(0 0 30px rgba(255, 210, 63, 0.9));
+  }
+  96% {
+    opacity: 0.5;
+  }
+}
+
+/* ====== Hazard Border Accent (for /servicios cards on hover) ====== */
+.hazard-border-hover {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.hazard-border-hover::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #FFD23F 0,
+    #FFD23F 8px,
+    #1F1F1F 8px,
+    #1F1F1F 16px
+  );
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+.hazard-border-hover:hover::before {
+  opacity: 1;
+}
+
+/* ====== Industrial Progress Stepper (for /citas) ====== */
+.industrial-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+.industrial-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.industrial-step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1F1F1F;
+  border: 2px solid rgba(255, 107, 26, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+.industrial-step.active .industrial-step-circle {
+  background: linear-gradient(135deg, #FF6B1A, #FFD23F);
+  border-color: #FF6B1A;
+  color: #1F1F1F;
+  box-shadow: 0 0 20px rgba(255, 107, 26, 0.5);
+  transform: scale(1.1);
+}
+.industrial-step.completed .industrial-step-circle {
+  background: #FF6B1A;
+  border-color: #FF6B1A;
+  color: #1F1F1F;
+}
+.industrial-step.completed .industrial-step-circle::after {
+  content: '✓';
+  font-size: 1.2rem;
+}
+.industrial-step-connector {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: rgba(255, 107, 26, 0.2);
+  z-index: 1;
+}
+.industrial-step:last-child .industrial-step-connector {
+  display: none;
+}
+.industrial-step.completed + .industrial-step .industrial-step-connector,
+.industrial-step.completed .industrial-step-connector {
+  background: #FF6B1A;
+}
+.industrial-step-label {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+.industrial-step.active .industrial-step-label,
+.industrial-step.completed .industrial-step-label {
+  color: #FFD23F;
+}
+
+/* ====== Quote Breakdown Reveal (for /cotizador) ====== */
+.breakdown-item {
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: breakdown-reveal 0.4s ease-out forwards;
+}
+.breakdown-item:nth-child(1) { animation-delay: 0.1s; }
+.breakdown-item:nth-child(2) { animation-delay: 0.2s; }
+.breakdown-item:nth-child(3) { animation-delay: 0.3s; }
+.breakdown-item:nth-child(4) { animation-delay: 0.4s; }
+@keyframes breakdown-reveal {
+  to { opacity: 1; transform: translateX(0); }
+}
+.breakdown-total {
+  position: relative;
+  overflow: hidden;
+}
+.breakdown-total::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 210, 63, 0.2), transparent);
+  animation: breakdown-shine 2s ease-in-out infinite;
+}
+@keyframes breakdown-shine {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+/* ====== Industrial Timeline Status (for /portal/[citaId]) ====== */
+.industrial-timeline {
+  position: relative;
+  padding-left: 40px;
+}
+.industrial-timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 107, 26, 0.2) 0,
+    rgba(255, 107, 26, 0.2) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+.industrial-timeline-node {
+  position: relative;
+  padding-bottom: 32px;
+}
+.industrial-timeline-node::before {
+  content: '';
+  position: absolute;
+  left: -29px;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: #1F1F1F;
+  border: 2px solid rgba(255, 107, 26, 0.3);
+  transform: rotate(45deg);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+.industrial-timeline-node.completed::before {
+  background: #FF6B1A;
+  border-color: #FF6B1A;
+  box-shadow: 0 0 12px rgba(255, 107, 26, 0.5);
+}
+.industrial-timeline-node.current::before {
+  background: #FFD23F;
+  border-color: #FFD23F;
+  box-shadow: 0 0 16px rgba(255, 210, 63, 0.7);
+  animation: industrial-pulse 1.5s ease-in-out infinite;
+}
+@keyframes industrial-pulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(255, 210, 63, 0.7); }
+  50% { box-shadow: 0 0 24px rgba(255, 210, 63, 1); }
+}
+
+/* ====== Glowing Status Badge Variants (for various status displays) ====== */
+.status-badge-glow-green {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.1));
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: #4ADE80;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.2);
+}
+.status-badge-glow-orange {
+  background: linear-gradient(135deg, rgba(255, 107, 26, 0.2), rgba(255, 210, 63, 0.1));
+  border: 1px solid rgba(255, 107, 26, 0.4);
+  color: #FF6B1A;
+  box-shadow: 0 0 12px rgba(255, 107, 26, 0.3);
+}
+.status-badge-glow-red {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.2), rgba(220, 38, 38, 0.1));
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #F87171;
+  box-shadow: 0 0 12px rgba(248, 113, 113, 0.2);
+}
+
+/* ====== Hazard Checkbox (for /citas vehicle type selection) ====== */
+.hazard-check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #FF6B1A;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.hazard-check:hover {
+  border-color: #FFD23F;
+  box-shadow: 0 0 12px rgba(255, 107, 26, 0.4);
+}
+.hazard-check:checked {
+  background: linear-gradient(135deg, #FF6B1A, #FFD23F);
+  border-color: #FF6B1A;
+}
+.hazard-check:checked::after {
+  content: '⚡';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  color: #1F1F1F;
+  font-weight: bold;
+}
+
+/* ====== Stat Counter Bounce (for stats numbers) ====== */
+.stat-counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+.stat-counter.animate {
+  animation: stat-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes stat-bounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ====== Service Card Glow Border (for /servicios - alternative effect) ====== */
+.glow-border-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.glow-border-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, #FF6B1A, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.glow-border-card:hover::before {
+  opacity: 1;
+}
+
+/* ====== Rivet Decorations (for industrial section dividers) ====== */
+.rivet-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+.rivet-divider::before, .rivet-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 26, 0.4), transparent);
+}
+.rivet-divider-icon {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #5A5A5A, #1F1F1F);
+  border-radius: 50%;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 8px rgba(255, 107, 26, 0.2);
+}

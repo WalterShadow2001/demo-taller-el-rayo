@@ -52,7 +52,7 @@ export function ServiciosGrid({ servicios }: { servicios: ServicioData[] }) {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((s) => (
-            <ServiceCard key={s.id} servicio={s} />
+            <ServiceCard key={s.id} servicio={s} hazardBorder />
           ))}
         </div>
       )}

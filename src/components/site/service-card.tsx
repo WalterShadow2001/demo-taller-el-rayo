@@ -27,7 +27,12 @@ export interface ServicioData {
   icono: string | null;
 }
 
-export function ServiceCard({ servicio }: { servicio: ServicioData }) {
+export interface ServiceCardProps {
+  servicio: ServicioData;
+  hazardBorder?: boolean;
+}
+
+export function ServiceCard({ servicio, hazardBorder = false }: ServiceCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -35,7 +40,12 @@ export function ServiceCard({ servicio }: { servicio: ServicioData }) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="card-electric-hover group relative overflow-hidden border-border bg-card transition-colors hover:border-primary/60">
+      <Card
+        className={cn(
+          "card-electric-hover group relative overflow-hidden border-border bg-card transition-colors hover:border-primary/60",
+          hazardBorder && "hazard-border-hover",
+        )
+      }>
         <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
         <CardContent className="flex h-full flex-col gap-3 p-5">
           <div className="flex items-start justify-between gap-3">
@@ -119,11 +129,23 @@ export function EstadoBadge({ estado }: { estado: EstadoCita | string }) {
             ? "var(--status-entregado)"
             : "var(--status-cancelada)";
 
+  // Pick the glowing variant class based on estado
+  const glowClass =
+    e === "en_proceso"
+      ? "status-badge-glow-orange"
+      : e === "listo" || e === "entregado"
+        ? "status-badge-glow-green"
+        : e === "cancelada"
+          ? "status-badge-glow-red"
+          : "badge-status-glow border-border bg-secondary/50";
+
   return (
     <Badge
       variant="outline"
-      className="badge-status-glow gap-1.5 border-border bg-secondary/50 font-medium"
-      style={{ color: "var(--foreground)" }}
+      className={cn(
+        "gap-1.5 font-medium",
+        glowClass,
+      )}
     >
       <span
         className="size-2 rounded-full"
@@ -141,7 +163,8 @@ export interface StatusTrackerProps {
 }
 
 /**
- * 4-stage visual status tracker. Cancelada is rendered as an alert banner above.
+ * Original 4-stage horizontal status tracker. Cancelada is rendered as an alert banner above.
+ * (Kept for the /citas confirmation page.)
  */
 export function StatusTracker({ estado }: StatusTrackerProps) {
   const e = (estado as EstadoCita) ?? "en_espera";
@@ -206,6 +229,54 @@ export function StatusTracker({ estado }: StatusTrackerProps) {
           );
         })}
       </ol>
+    </div>
+  );
+}
+
+/**
+ * Industrial vertical timeline variant for /portal/[citaId].
+ * Each ESTADO_PASO becomes a diamond node with completed/current
+ * states driven by the cita's estado.
+ */
+export function StatusTrackerIndustrial({ estado }: StatusTrackerProps) {
+  const e = (estado as EstadoCita) ?? "en_espera";
+  const currentIdx = getEstadoIndex(e);
+  const isCanceled = e === "cancelada";
+
+  return (
+    <div className="flex flex-col gap-3">
+      {isCanceled && (
+        <div className="rounded-md border border-[var(--status-cancelada)] bg-[var(--status-cancelada)]/10 px-4 py-2 text-sm text-[var(--status-cancelada)]">
+          Esta cita fue cancelada. Si crees que es un error, comunícate con el taller.
+        </div>
+      )}
+
+      <div className="industrial-timeline">
+        {ESTADO_PASOS.map((paso, i) => {
+          const done = !isCanceled && i < currentIdx;
+          const active = !isCanceled && i === currentIdx;
+          return (
+            <div
+              key={paso.value}
+              className={cn(
+                "industrial-timeline-node",
+                done && "completed",
+                active && "current",
+              )}
+            >
+              <span
+                className={cn(
+                  "font-display text-sm font-semibold",
+                  active || done ? "text-foreground" : "text-muted-foreground",
+                )}
+              >
+                {paso.label}
+              </span>
+              <span className="text-xs text-muted-foreground">{paso.description}</span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

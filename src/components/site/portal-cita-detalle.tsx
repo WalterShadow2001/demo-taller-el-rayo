@@ -28,7 +28,7 @@ import {
   formatHora12,
   formatPrecio,
 } from "@/lib/cita-helpers";
-import { EstadoBadge, StatusTracker } from "./service-card";
+import { EstadoBadge, StatusTrackerIndustrial } from "./service-card";
 
 interface CitaDetalle {
   id: string;
@@ -184,7 +184,7 @@ export function PortalCitaDetalle() {
         </CardContent>
       </Card>
 
-      {/* Status tracker */}
+      {/* Status tracker — industrial timeline */}
       <Card className="border-border bg-card">
         <CardContent className="flex flex-col gap-4 p-6">
           <div className="flex items-center justify-between">
@@ -192,7 +192,7 @@ export function PortalCitaDetalle() {
               Estado del servicio
             </h2>
           </div>
-          <StatusTracker estado={cita.estado} createdAt={cita.creadoEn} />
+          <StatusTrackerIndustrial estado={cita.estado} createdAt={cita.creadoEn} />
         </CardContent>
       </Card>
 

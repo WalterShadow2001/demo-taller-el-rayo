@@ -61,7 +61,7 @@ function StatCard({
             {icon}
           </span>
           <div>
-            <p className="stat-big text-2xl">{value}</p>
+            <p className="stat-big stat-counter animate text-2xl">{value}</p>
             <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
               {label}
             </p>
@@ -144,7 +144,7 @@ export default async function HomePage() {
                     <span className="font-display text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                       Cotiza al instante
                     </span>
-                    <Zap className="size-5 text-primary" />
+                    <Zap className="lightning-flash size-5 text-primary" aria-hidden="true" />
                   </div>
                   <p className="font-display text-2xl font-bold text-foreground">
                     ¿Cuánto cuesta tu servicio?
@@ -263,6 +263,13 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Rivet divider — industrial decoration */}
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="rivet-divider" aria-hidden="true">
+            <span className="rivet-divider-icon" />
+          </div>
+        </div>
 
         {/* Contact / location */}
         <section className="bg-card border-b border-border">

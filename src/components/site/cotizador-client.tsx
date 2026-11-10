@@ -250,19 +250,19 @@ export function CotizadorClient() {
                   Desglose estimado
                 </p>
                 <dl className="flex flex-col gap-1.5 text-sm">
-                  <div className="flex items-center justify-between">
+                  <div className="breakdown-item flex items-center justify-between">
                     <dt className="text-muted-foreground">Mano de obra</dt>
                     <dd className="font-medium">{formatPrecio(coti.desglose.manoObra)}</dd>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="breakdown-item flex items-center justify-between">
                     <dt className="text-muted-foreground">Refacciones e insumos</dt>
                     <dd className="font-medium">{formatPrecio(coti.desglose.refaccionesInsumos)}</dd>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="breakdown-item flex items-center justify-between">
                     <dt className="text-muted-foreground">IVA (16%)</dt>
                     <dd className="font-medium">{formatPrecio(coti.desglose.iva)}</dd>
                   </div>
-                  <div className="mt-1 flex items-center justify-between border-t border-border pt-2">
+                  <div className="breakdown-item breakdown-total mt-1 flex items-center justify-between rounded-md border-t border-border pt-2">
                     <dt className="font-display font-semibold text-foreground">Total estimado</dt>
                     <dd className="font-display text-xl font-bold text-primary">
                       {formatPrecio(coti.desglose.total)}

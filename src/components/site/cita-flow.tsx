@@ -410,22 +410,30 @@ function StepServicio({
           <Wrench className="size-4 text-primary" />
           Tipo de vehículo
         </Label>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {(["auto", "camioneta"] as const).map((t) => (
-            <button
+            <label
               key={t}
-              type="button"
-              onClick={() => setTipoVehiculo(t)}
               className={cn(
-                "flex items-center justify-center gap-2 rounded-md border px-4 py-3 text-sm font-medium transition-colors",
+                "flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 transition-colors",
                 tipoVehiculo === t
                   ? "border-primary bg-primary/10 text-primary"
                   : "border-border bg-background text-muted-foreground hover:bg-secondary",
               )}
             >
+              <input
+                type="radio"
+                name="tipoVehiculo-cita"
+                value={t}
+                checked={tipoVehiculo === t}
+                onChange={() => setTipoVehiculo(t)}
+                className="hazard-check"
+              />
               <Car className="size-4" />
-              {t === "auto" ? "Auto / Sedán" : "Camioneta / SUV"}
-            </button>
+              <span className="text-sm font-medium">
+                {t === "auto" ? "Auto / Sedán" : "Camioneta / SUV"}
+              </span>
+            </label>
           ))}
         </div>
       </div>
